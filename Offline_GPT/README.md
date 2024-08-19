@@ -34,7 +34,7 @@ This project was inspired by the original [privateGPT]([https://github.com/Promt
 1. 📥 Clone the repo using git:
 
 ```shell
-git clone https://github.com/PromtEngineer/localGPT.git
+git clone https://github.com/kishan-rajoria/PowergenAI/tree/main/Offline_GPT.git
 ```
 
 2. 🐍 Install [conda](https://www.anaconda.com/download) for virtual environment management. Create and activate a new virtual environment.
