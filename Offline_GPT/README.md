@@ -1,6 +1,6 @@
-# LocalGPT: Secure, Local Conversations with Your Documents 🌐
+# Offline_GPT: Secure, Local Conversations with Your Documents 🌐
 
-**LocalGPT** is an open-source initiative that allows you to converse with your documents without compromising your privacy. With everything running locally, you can be assured that no data ever leaves your computer. Dive into the world of secure, local document interactions with LocalGPT.
+**Offline_GPT** is an open-source initiative that allows you to converse with your documents without compromising your privacy. With everything running locally, you can be assured that no data ever leaves your computer. Dive into the world of secure, local document interactions with LocalGPT.
 
 ## Features 🌟
 - **Utmost Privacy**: Your data remains on your computer, ensuring 100% security.
@@ -11,13 +11,7 @@
 - **API**: LocalGPT has an API that you can use for building RAG Applications.
 - **Graphical Interface**: LocalGPT comes with two GUIs, one uses the API and the other is standalone (based on streamlit).
 - **GPU, CPU & MPS Support**: Supports multiple platforms out of the box, Chat with your data using `CUDA`, `CPU` or `MPS` and more!
-
-## Dive Deeper with Our Videos 🎥
-- [Detailed code-walkthrough](https://youtu.be/MlyoObdIHyo)
-- [Llama-2 with LocalGPT](https://youtu.be/lbFmceo4D5E)
-- [Adding Chat History](https://youtu.be/d7otIM_MCZs)
-- [LocalGPT - Updated (09/17/2023)](https://youtu.be/G_prHSKX9d4)
-
+- 
 ## Technical Details 🛠️
 By selecting the right local models and the power of `LangChain` you can run the entire RAG pipeline locally, without any data leaving your environment, and with reasonable performance.
 
@@ -25,7 +19,7 @@ By selecting the right local models and the power of `LangChain` you can run the
 - `run_localGPT.py` uses a local LLM to understand questions and create answers. The context for the answers is extracted from the local vector store using a similarity search to locate the right piece of context from the docs.
 - You can replace this local LLM with any other LLM from the HuggingFace. Make sure whatever LLM you select is in the HF format.
 
-This project was inspired by the original [privateGPT](https://github.com/imartinez/privateGPT).
+This project was inspired by the original [privateGPT]([https://github.com/PromtEngineer/localGPT]).
 
 ## Built Using 🧩
 - [LangChain](https://github.com/hwchase17/langchain)
@@ -239,83 +233,3 @@ To change the models you will need to set both `MODEL_ID` and `MODEL_BASENAME`.
    - Pick one of the model names and set it as  `MODEL_BASENAME`. For example -> `MODEL_BASENAME = "wizardLM-7B-GPTQ-4bit.compat.no-act-order.safetensors"`
 
 8. Follow the same steps for `GGUF` and `GGML` models.
-
-# GPU and VRAM Requirements
-
-Below is the VRAM requirement for different models depending on their size (Billions of parameters). The estimates in the table does not include VRAM used by the Embedding models - which use an additional 2GB-7GB of VRAM depending on the model.
-
-| Mode Size (B) | float32   | float16   | GPTQ 8bit      | GPTQ 4bit          |
-| ------- | --------- | --------- | -------------- | ------------------ |
-| 7B      | 28 GB     | 14 GB     | 7 GB - 9 GB    | 3.5 GB - 5 GB      |
-| 13B     | 52 GB     | 26 GB     | 13 GB - 15 GB  | 6.5 GB - 8 GB      |
-| 32B     | 130 GB    | 65 GB     | 32.5 GB - 35 GB| 16.25 GB - 19 GB   |
-| 65B     | 260.8 GB  | 130.4 GB  | 65.2 GB - 67 GB| 32.6 GB - 35 GB    |
-
-
-# System Requirements
-
-## Python Version
-
-To use this software, you must have Python 3.10 or later installed. Earlier versions of Python will not compile.
-
-## C++ Compiler
-
-If you encounter an error while building a wheel during the `pip install` process, you may need to install a C++ compiler on your computer.
-
-### For Windows 10/11
-
-To install a C++ compiler on Windows 10/11, follow these steps:
-
-1. Install Visual Studio 2022.
-2. Make sure the following components are selected:
-   - Universal Windows Platform development
-   - C++ CMake tools for Windows
-3. Download the MinGW installer from the [MinGW website](https://sourceforge.net/projects/mingw/).
-4. Run the installer and select the "gcc" component.
-
-### NVIDIA Driver's Issues:
-
-Follow this [page](https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-22-04) to install NVIDIA Drivers.
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=PromtEngineer/localGPT&type=Date)](https://star-history.com/#PromtEngineer/localGPT&Date)
-
-# Disclaimer
-
-This is a test project to validate the feasibility of a fully local solution for question answering using LLMs and Vector embeddings. It is not production ready, and it is not meant to be used in production. Vicuna-7B is based on the Llama model so that has the original Llama license.
-
-# Common Errors
-
- - [Torch not compatible with CUDA enabled](https://github.com/pytorch/pytorch/issues/30664)
-
-   -  Get CUDA version
-      ```shell
-      nvcc --version
-      ```
-      ```shell
-      nvidia-smi
-      ```
-   - Try installing PyTorch depending on your CUDA version
-      ```shell
-         conda install -c pytorch torchvision cudatoolkit=10.1 pytorch
-      ```
-   - If it doesn't work, try reinstalling
-      ```shell
-         pip uninstall torch
-         pip cache purge
-         pip install torch -f https://download.pytorch.org/whl/torch_stable.html
-      ```
-
-- [ERROR: pip's dependency resolver does not currently take into account all the packages that are installed](https://stackoverflow.com/questions/72672196/error-pips-dependency-resolver-does-not-currently-take-into-account-all-the-pa/76604141#76604141)
-  ```shell
-     pip install h5py
-     pip install typing-extensions
-     pip install wheel
-  ```
-- [Failed to import transformers](https://github.com/huggingface/transformers/issues/11262)
-  - Try re-install
-    ```shell
-       conda uninstall tokenizers, transformers
-       pip install transformers
-    ```
